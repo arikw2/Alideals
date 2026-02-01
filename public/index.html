@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Discover trending products from AliExpress with daily updates. Shop electronics, fashion, home goods and more at amazing prices.">
+  <title>AliDeals - Trending Products & Hot Deals</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Heebo:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-inner">
+          <!-- Logo -->
+          <a href="/" class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <div class="logo-text">Ali<span>Deals</span></div>
+          </a>
+
+          <!-- Search Bar (Desktop) -->
+          <div class="search-container">
+            <div class="search-bar">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="search-input" placeholder="Search for products..."
+                data-i18n-placeholder="searchPlaceholder">
+            </div>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+              <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <!-- Language Toggle -->
+            <button class="lang-toggle" id="lang-toggle" title="Switch Language">
+              <span class="lang-label" id="lang-label">עב</span>
+            </button>
+            <button class="icon-btn" id="wishlist-btn" title="Wishlist">
+              <i class="far fa-heart"></i>
+              <span class="badge" id="wishlist-count">0</span>
+            </button>
+            <button class="icon-btn menu-toggle" id="menu-toggle" aria-label="Open menu">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobile-nav">
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-header">
+          <div class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <div class="logo-text">Ali<span>Deals</span></div>
+          </div>
+          <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="mobile-search">
+          <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="mobile-search-input" placeholder="Search products..."
+              data-i18n-placeholder="searchPlaceholder">
+          </div>
+        </div>
+
+        <!-- Mobile Categories -->
+        <h3 class="sidebar-title" data-i18n="categories">Categories</h3>
+        <ul class="category-list" id="mobile-category-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Hero Banner -->
+        <section class="hero">
+          <div class="hero-banner">
+            <div class="hero-content">
+              <span class="hero-badge">
+                <i class="fas fa-bolt"></i>
+                <span data-i18n="updatedDaily">Updated Daily</span>
+              </span>
+              <h1 class="hero-title" data-i18n="heroTitle">Discover Today's Hottest Deals</h1>
+              <p class="hero-description" data-i18n="heroDescription">
+                Curated selection of trending products with thousands of orders.
+                New items added every day!
+              </p>
+              <a href="#products" class="hero-btn">
+                <i class="fas fa-shopping-bag"></i>
+                <span data-i18n="exploreProducts">Explore Products</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="stats-bar">
+          <div class="stat-item">
+            <div class="stat-value" id="stat-products">32</div>
+            <div class="stat-label" data-i18n="products">Products</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="stat-categories">8</div>
+            <div class="stat-label" data-i18n="categories">Categories</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="stat-savings">50%</div>
+            <div class="stat-label" data-i18n="avgSavings">Avg. Savings</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="stat-rating">4.7</div>
+            <div class="stat-label" data-i18n="avgRating">Avg. Rating</div>
+          </div>
+        </div>
+
+        <!-- Category Pills (Mobile/Tablet) -->
+        <div class="category-pills" id="category-pills">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Content Wrapper (Sidebar + Products) -->
+        <div class="content-wrapper">
+          <!-- Sidebar (Desktop) -->
+          <aside class="sidebar">
+            <h3 class="sidebar-title" data-i18n="categories">Categories</h3>
+            <ul class="category-list" id="category-list">
+              <!-- Populated by JavaScript -->
+            </ul>
+            
+            <!-- Price Filter -->
+            <div class="sidebar-section" style="margin-top: var(--space-xl);">
+              <h3 class="sidebar-title" data-i18n="priceRange">Price Range</h3>
+              <div class="price-filter">
+                <input type="number" class="price-input" id="price-min" placeholder="Min" min="0">
+                <span class="price-separator">-</span>
+                <input type="number" class="price-input" id="price-max" placeholder="Max" min="0">
+              </div>
+              <button class="btn btn-secondary" id="apply-price-filter" style="margin-top: var(--space-sm); width: 100%;">
+                <i class="fas fa-filter"></i>
+                <span data-i18n="applyFilter">Apply</span>
+              </button>
+            </div>
+          </aside>
+
+          <!-- Main Products Area -->
+          <div class="main-products">
+            <!-- Trending Section -->
+            <section class="products-section" id="products">
+              <div class="section-header">
+                <div style="display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap;">
+                  <h2 class="section-title">
+                    <i class="fas fa-fire-flame-curved icon"></i>
+                    <span id="section-title-text">Trending Now</span>
+                  </h2>
+                  <span class="text-muted" id="product-count">Loading...</span>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <!-- Sort Dropdown -->
+                  <div class="sort-dropdown" id="sort-dropdown">
+                    <button class="sort-btn" id="sort-btn">
+                      <i class="fas fa-sort"></i>
+                      <span data-i18n="sortBy">Sort by</span>
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="sort-menu">
+                      <div class="sort-option active" data-sort="popular">
+                        <i class="fas fa-fire"></i>
+                        <span data-i18n="sortPopular">Popular</span>
+                      </div>
+                      <div class="sort-option" data-sort="price-low">
+                        <i class="fas fa-arrow-down"></i>
+                        <span data-i18n="sortPriceLow">Price: Low to High</span>
+                      </div>
+                      <div class="sort-option" data-sort="price-high">
+                        <i class="fas fa-arrow-up"></i>
+                        <span data-i18n="sortPriceHigh">Price: High to Low</span>
+                      </div>
+                      <div class="sort-option" data-sort="rating">
+                        <i class="fas fa-star"></i>
+                        <span data-i18n="sortRating">Highest Rated</span>
+                      </div>
+                      <div class="sort-option" data-sort="newest">
+                        <i class="fas fa-clock"></i>
+                        <span data-i18n="sortNewest">Newest</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- View Toggle -->
+                  <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="grid" title="Grid View">
+                      <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-toggle-btn" data-view="list" title="List View">
+                      <i class="fas fa-list"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Active Filters -->
+              <div class="active-filters" id="active-filters"></div>
+
+              <!-- Product Grid -->
+              <div class="product-grid" id="product-grid">
+                <!-- Loading Skeletons -->
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card"></div>
+              </div>
+
+              <!-- Load More Button -->
+              <div class="text-center mt-md" id="load-more-container" style="display: none;">
+                <button class="btn btn-secondary" id="load-more-btn">
+                  <i class="fas fa-plus"></i>
+                  <span data-i18n="loadMore">Load More Products</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <div class="logo mb-md">
+              <div class="logo-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="logo-text">Ali<span>Deals</span></div>
+            </div>
+            <p class="text-muted" data-i18n="footerDescription">
+              Your daily source for trending products and amazing deals from AliExpress.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4 data-i18n="categories">Categories</h4>
+            <nav class="footer-links">
+              <a href="#" data-category="electronics">Electronics</a>
+              <a href="#" data-category="fashion">Fashion</a>
+              <a href="#" data-category="home">Home & Garden</a>
+              <a href="#" data-category="sports">Sports</a>
+            </nav>
+          </div>
+
+          <div class="footer-section">
+            <h4 data-i18n="moreCategories">More Categories</h4>
+            <nav class="footer-links">
+              <a href="#" data-category="beauty">Beauty</a>
+              <a href="#" data-category="toys">Toys & Games</a>
+              <a href="#" data-category="auto">Auto</a>
+              <a href="#" data-category="jewelry">Jewelry</a>
+            </nav>
+          </div>
+
+          <div class="footer-section">
+            <h4 data-i18n="information">Information</h4>
+            <nav class="footer-links">
+              <a href="#" data-i18n="aboutUs">About Us</a>
+              <a href="#" data-i18n="howItWorks">How It Works</a>
+              <a href="#" data-i18n="privacyPolicy">Privacy Policy</a>
+              <a href="#" data-i18n="termsOfService">Terms of Service</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 AliDeals. All rights reserved. Products sourced from AliExpress.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="product-modal" id="product-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img id="modal-image" src="" alt="">
+        </div>
+        <div class="modal-details">
+          <h2 class="modal-title" id="modal-title"></h2>
+          <div class="modal-price">
+            <span class="price-current" id="modal-price"></span>
+            <span class="price-original" id="modal-original-price"></span>
+            <span class="price-discount" id="modal-discount"></span>
+          </div>
+          <div class="product-rating mb-md">
+            <span class="stars" id="modal-stars"></span>
+            <span id="modal-rating"></span>
+            <span class="count" id="modal-reviews"></span>
+          </div>
+          <p class="modal-description" id="modal-description"></p>
+          <div class="product-orders mb-lg">
+            <i class="fas fa-shopping-cart text-accent"></i>
+            <span id="modal-orders"></span>
+          </div>
+          <div class="modal-actions">
+            <a href="#" target="_blank" class="btn btn-primary" id="modal-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-i18n="viewOnAliExpress">View on AliExpress</span>
+            </a>
+            <button class="btn btn-secondary" id="modal-wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Floating Action Buttons -->
+  <div class="fab-container">
+    <button class="fab" id="scroll-top-btn" title="Scroll to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

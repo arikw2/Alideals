@@ -1,0 +1,19 @@
+{
+  "name": "aliexpress-showcase",
+  "version": "1.0.0",
+  "description": "AliExpress Products Showcase Website with automatic daily updates",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "keywords": ["aliexpress", "ecommerce", "showcase"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "axios": "^1.6.0",
+    "cors": "^2.8.5"
+  }
+}
